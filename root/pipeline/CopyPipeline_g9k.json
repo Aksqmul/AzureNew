@@ -1,0 +1,62 @@
+{
+	"name": "CopyPipeline_g9k",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy_g9k",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "elecdatacontainer//sample.csv"
+					},
+					{
+						"name": "Destination",
+						"value": "elecdatacontainer/output/"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "BinarySource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true
+						},
+						"formatSettings": {
+							"type": "BinaryReadSettings"
+						}
+					},
+					"sink": {
+						"type": "BinarySink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"validateDataConsistency": false
+				},
+				"inputs": [
+					{
+						"referenceName": "SourceDataset_g9k",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DestinationDataset_g9k",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": []
+	}
+}
